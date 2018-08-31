@@ -268,6 +268,7 @@ const Swipeout = createReactClass({
   _open: function (contentPos, direction) {
     const left = direction === 'left';
     const { sectionID, rowID, onOpen } = this.props;
+      this.props.onSwipeOpen();
     onOpen && onOpen(sectionID, rowID, direction);
     this._tweenContent('contentPos', contentPos);
     this.setState({
@@ -284,6 +285,7 @@ const Swipeout = createReactClass({
       const direction = this.state.openedRight ? 'right' : 'left';
       onClose(sectionID, rowID, direction);
     }
+      this.props.onSwipeClose();
     this._tweenContent('contentPos', 0);
     this._callOnClose();
     this.setState({
